@@ -728,7 +728,7 @@ const m = {
             }
         } else {
             dmg *= m.defense()
-            m.health -= dmg;
+            m.health += dmg;
             if (m.health < 0 || isNaN(m.health)) {
                 if (tech.isDeathAvoid && powerUps.research.count > 0 && !tech.isDeathAvoidedThisLevel) { //&& Math.random() < 0.5
                     tech.isDeathAvoidedThisLevel = true
