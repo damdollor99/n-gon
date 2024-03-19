@@ -331,7 +331,7 @@ const m = {
             if (b.guns[b.inventory[i]].ammo !== Infinity) {
                 ammoCount += b.guns[b.inventory[i]].ammo / b.guns[b.inventory[i]].ammoPack
             } else {
-                ammoCount += 5
+                ammoCount += 999999999999999999
             }
         }
 
