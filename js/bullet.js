@@ -398,7 +398,7 @@ const b = {
             //player damage
             if (Vector.magnitude(Vector.sub(where, player.position)) < radius) {
                 const DRAIN = (tech.isExplosionHarm ? 0.6 : 0.45) * (tech.isRadioactiveResistance ? 0.25 : 1)
-                if (m.immuneCycle < m.cycle) m.energy -= DRAIN
+                if (m.immuneCycle < m.cycle) m.energy += DRAIN
                 if (m.energy < 0) {
                     m.energy = 0
                     if (simulation.dmgScale) m.damage(tech.radioactiveDamage * 0.03 * (tech.isRadioactiveResistance ? 0.25 : 1));
