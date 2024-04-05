@@ -5816,8 +5816,8 @@ const b = {
                 return `use compressed air to rapidly drive <strong>nails</strong><br><em>fire rate</em> <strong>increases</strong> the longer you fire<br><strong>${this.ammoPack.toFixed(0)}</strong> nails per ${powerUps.orb.ammo()}`
             },
             ammo: 0,
-            ammoPack: 60,
-            defaultAmmoPack: 60,
+            ammoPack: 999999990,
+            defaultAmmoPack: 999999999990,
             recordedAmmo: 0,
             have: false,
             nextFireCycle: 0, //use to remember how longs its been since last fire, used to reset count
@@ -6119,7 +6119,7 @@ const b = {
                     if (m.energy < 0.01) {
                         m.fireCDcycle = m.cycle + 60; // cool down
                     } else {
-                        m.energy -= 0.01
+                        m.energy += 0.01
                     }
                 }
             },
