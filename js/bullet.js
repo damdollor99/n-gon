@@ -449,7 +449,7 @@ const b = {
                         const harm = tech.isExplosionHarm ? 0.067 : 0.05
                         if (tech.isImmuneExplosion && m.energy > 0.25) {
                             // const mitigate = Math.min(1, Math.max(1 - m.energy * 0.5, 0))
-                            m.energy -= 0.25
+                            m.energy += 0.25
                             // m.damage(0.01 * harm); //remove 99% of the damage  1-0.99
                             knock = Vector.mult(Vector.normalise(sub), -0.6 * player.mass * Math.max(0, Math.min(0.15 - 0.002 * player.speed, 0.15)));
                             player.force.x = knock.x; // not +=  so crazy forces can't build up with MIRV
