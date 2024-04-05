@@ -2316,7 +2316,7 @@ const m = {
     holding() {
         if (m.fireCDcycle < m.cycle) m.fireCDcycle = m.cycle - 1
         if (m.holdingTarget) {
-            m.energy -= m.fieldRegen;
+            m.energy += m.fieldRegen;
             if (m.energy < 0) m.energy = 0;
             Matter.Body.setPosition(m.holdingTarget, {
                 x: m.pos.x + 70 * Math.cos(m.angle),
@@ -2664,7 +2664,7 @@ const m = {
     pushMass(who, fieldBlockCost = (0.025 + Math.sqrt(who.mass) * Vector.magnitude(Vector.sub(who.velocity, player.velocity)) * 0.002) * m.fieldShieldingScale) {
         if (m.energy > m.minEnergyToDeflect) { //shield needs at least some of the cost to block
             if (who.isShielded) fieldBlockCost *= 2; //shielded mobs take more energy to block
-            m.energy -= fieldBlockCost
+            m.energy += fieldBlockCost
             if (m.energy < m.minEnergyToDeflect) {
                 m.energy = 0;
                 m.fieldCDcycle = m.cycle + Math.max(m.fieldBlockCD, 60);
@@ -3310,7 +3310,7 @@ const m = {
                     m.holding();
                     m.throwBlock();
                 } else if (input.field) { //push away
-                    if (m.energy > m.fieldRegen) m.energy -= m.fieldRegen
+                    if (m.energy > m.fieldRegen) m.energy += m.fieldRegen
                     m.grabPowerUp();
                     m.lookForPickUp();
                     const DRAIN = 0.00035
@@ -3346,13 +3346,13 @@ const m = {
                                 moveThis(powerUp, this.fieldDrawRadius, 0);
                                 moveThis(body, this.fieldDrawRadius, 0);
                             } else if (input.up) { //up
-                                m.energy -= 5 * DRAIN;
+                                m.energy += 5 * DRAIN;
                                 this.fieldDrawRadius = this.fieldDrawRadius * 0.97 + 1100 * 0.03;
                                 player.force.y -= 2.25 * player.mass * simulation.g;
                                 moveThis(powerUp, this.fieldDrawRadius, 1.8);
                                 moveThis(body, this.fieldDrawRadius, 1.8);
                             } else {
-                                m.energy -= DRAIN;
+                                m.energy += DRAIN;
                                 this.fieldDrawRadius = this.fieldDrawRadius * 0.97 + 800 * 0.03;
                                 player.force.y -= 1.07 * player.mass * simulation.g; // slow upward drift
                                 moveThis(powerUp, this.fieldDrawRadius);
@@ -3390,13 +3390,13 @@ const m = {
                                 verticalForce(powerUp, this.fieldDrawRadius, 0.7);
                                 verticalForce(body, this.fieldDrawRadius, 0.7);
                             } else if (input.up) { //up
-                                m.energy -= 5 * DRAIN;
+                                m.energy += 5 * DRAIN;
                                 this.fieldDrawRadius = this.fieldDrawRadius * 0.97 + 850 * 0.03;
                                 player.force.y -= 1.45 * player.mass * simulation.g;
                                 verticalForce(powerUp, this.fieldDrawRadius, 1.38);
                                 verticalForce(body, this.fieldDrawRadius, 1.38);
                             } else {
-                                m.energy -= DRAIN;
+                                m.energy += DRAIN;
                                 this.fieldDrawRadius = this.fieldDrawRadius * 0.97 + 650 * 0.03;
                                 player.force.y -= 1.07 * player.mass * simulation.g; // slow upward drift
                                 verticalForce(powerUp, this.fieldDrawRadius);
@@ -3425,7 +3425,7 @@ const m = {
                         //     for (let i = 0, len = mob.length; i < len; i++) {
                         //         if (!mob[i].isMobBullet && !mob[i].shield && !mob[i].isShielded && ((mob[i].distanceToPlayer() + mob[i].radius) < this.fieldDrawRadius)) {
                         //             if (m.energy > ICE_DRAIN * 2) {
-                        //                 m.energy -= ICE_DRAIN;
+                        //                 m.energy += ICE_DRAIN;
                         //                 this.fieldDrawRadius -= 2;
                         //                 mobs.statusSlow(mob[i], 60)
                         //             } else {
@@ -3507,7 +3507,7 @@ const m = {
                         } else if (tech.isSporeWorm) {
                             const drain = 0.18 + (Math.max(bullet.length, 130) - 130) * 0.02
                             if (m.energy > drain) {
-                                m.energy -= drain
+                                m.energy += drain
                                 b.worm({
                                     x: m.pos.x + 35 * Math.cos(m.angle),
                                     y: m.pos.y + 35 * Math.sin(m.angle)
@@ -3522,7 +3522,7 @@ const m = {
                             const drain = 0.095 + (Math.max(bullet.length, 130) - 130) * 0.01
                             for (let i = 0, len = Math.random() * 20; i < len; i++) {
                                 if (m.energy > 3 * drain) {
-                                    m.energy -= drain
+                                    m.energy += drain
                                     b.spore(m.pos)
                                 } else {
                                     break
@@ -3530,7 +3530,7 @@ const m = {
                             }
                         }
                     } else if (simulation.molecularMode === 1) {
-                        m.energy -= 0.33;
+                        m.energy += 0.33;
                         const direction = { x: Math.cos(m.angle), y: Math.sin(m.angle) }
                         const push = Vector.mult(Vector.perp(direction), 0.08)
                         b.missile({ x: m.pos.x + 30 * direction.x, y: m.pos.y + 30 * direction.y }, m.angle, -15)
@@ -3538,13 +3538,13 @@ const m = {
                         bullet[bullet.length - 1].force.y += 0.005 + push.y * (Math.random() - 0.5)
                         // b.missile({ x: m.pos.x, y: m.pos.y - 40 }, -Math.PI / 2 + 0.5 * (Math.random() - 0.5), 0, 1)
                     } else if (simulation.molecularMode === 2) {
-                        m.energy -= 0.045;
+                        m.energy += 0.045;
                         b.iceIX(1)
                     } else if (simulation.molecularMode === 3) {
                         if (tech.isDroneRadioactive) {
                             const drain = 0.8 + (Math.max(bullet.length, 50) - 50) * 0.01
                             if (m.energy > drain) {
-                                m.energy -= drain
+                                m.energy += drain
                                 b.droneRadioactive({
                                     x: m.pos.x + 30 * Math.cos(m.angle) + 10 * (Math.random() - 0.5),
                                     y: m.pos.y + 30 * Math.sin(m.angle) + 10 * (Math.random() - 0.5)
@@ -3555,7 +3555,7 @@ const m = {
                             //at 200 bullets the energy cost is 0.45 + 100*0.006 = 1.05
                             const drain = (0.45 + (Math.max(bullet.length, 100) - 100) * 0.006) * tech.droneEnergyReduction
                             if (m.energy > drain) {
-                                m.energy -= drain
+                                m.energy += drain
                                 b.drone()
                             }
                         }
@@ -3839,16 +3839,16 @@ const m = {
                                 }
                             } else if (m.energy > m.plasmaBall.drain) { //charge up when attached
                                 if (tech.isCapacitor) {
-                                    m.energy -= m.plasmaBall.drain * 2;
+                                    m.energy += m.plasmaBall.drain * 2;
                                     const scale = 1 + 48 * Math.pow(Math.max(1, m.plasmaBall.circleRadius), -1.8)
                                     Matter.Body.scale(m.plasmaBall, scale, scale); //grow
                                 } else {
-                                    m.energy -= m.plasmaBall.drain;
+                                    m.energy += m.plasmaBall.drain;
                                     const scale = 1 + 16 * Math.pow(Math.max(1, m.plasmaBall.circleRadius), -1.8)
                                     Matter.Body.scale(m.plasmaBall, scale, scale); //grow    
                                 }
                                 if (m.energy > m.maxEnergy) {
-                                    m.energy -= m.plasmaBall.drain * 2;
+                                    m.energy += m.plasmaBall.drain * 2;
                                     const scale = 1 + 16 * Math.pow(Math.max(1, m.plasmaBall.circleRadius), -1.8)
                                     Matter.Body.scale(m.plasmaBall, scale, scale); //grow    
                                 }
@@ -4035,7 +4035,7 @@ const m = {
                         m.holding();
                         m.throwBlock();
                     } else if (input.field && m.fieldCDcycle < m.cycle) { //not hold but field button is pressed
-                        if (m.energy > m.fieldRegen) m.energy -= m.fieldRegen
+                        if (m.energy > m.fieldRegen) m.energy += m.fieldRegen
                         m.grabPowerUp();
                         m.lookForPickUp();
                         b.plasma();
@@ -4127,7 +4127,7 @@ const m = {
                         if (!m.holdingTarget) {
                             if (this.rewindCount === 0) { //large upfront energy cost to enter rewind mode
                                 if (m.energy > 0.3) {
-                                    m.energy -= 0.3
+                                    m.energy += 0.3
                                 } else {
                                     this.rewindCount = 0;
                                     m.resetHistory();
@@ -4150,7 +4150,7 @@ const m = {
                                 ctx.fillRect(-100000, -100000, 200000, 200000)
                                 ctx.globalCompositeOperation = "source-over"
                                 // m.grabPowerUp(); //a second grab power up to make the power ups easier to grab, and they more fast which matches the time theme
-                                m.energy -= DRAIN
+                                m.energy += DRAIN
                                 if (m.immuneCycle < m.cycle + 5) m.immuneCycle = m.cycle + 5; //player is immune to damage for 5 cycles
                                 Matter.Body.setPosition(player, history.position);
                                 Matter.Body.setVelocity(player, {
@@ -4304,7 +4304,7 @@ const m = {
                 if (m.fireCDcycle + 10 < m.cycle && !input.fire) { //automatically cloak if not firing
                     // const drain = 0.02
                     if (!m.isCloak) { //&& m.energy > drain + 0.03
-                        // m.energy -= drain
+                        // m.energy += drain
                         m.isCloak = true //enter cloak
                         m.fieldHarmReduction = 0.33; //66% reduction
                         m.enterCloakCycle = m.cycle
@@ -4562,7 +4562,7 @@ const m = {
                                 if (Vector.magnitude(Vector.sub(body[i].position, m.fieldPosition)) < m.fieldRadius && !body[i].isNotHoldable) {
                                     const DRAIN = speed * body[i].mass * 0.0000035 // * (1 + m.energy * m.energy) //drain more energy when you have more energy
                                     if (m.energy > DRAIN) {
-                                        m.energy -= DRAIN;
+                                        m.energy += DRAIN;
                                         Matter.Body.setVelocity(body[i], velocity); //give block mouse velocity
                                         Matter.Body.setAngularVelocity(body[i], body[i].angularVelocity * 0.8)
                                         // body[i].force.y -= body[i].mass * simulation.g; //remove gravity effects
@@ -4837,7 +4837,7 @@ const m = {
                         if (tech.isWormHolePause) {
                             const drain = m.fieldRegen + 0.000035
                             if (m.energy > drain) {
-                                m.energy -= drain
+                                m.energy += drain
                                 if (m.immuneCycle < m.cycle + 1) m.immuneCycle = m.cycle + 1; //player is immune to damage for 1 cycle
                                 m.isBodiesAsleep = true;
 
@@ -4930,7 +4930,7 @@ const m = {
                                 }
                             }).length === 0
                         ) {
-                            m.energy -= this.drain
+                            m.energy += this.drain
                             m.hole.isReady = false;
                             m.fieldRange = 0
                             Matter.Body.setPosition(player, simulation.mouseInGame);
@@ -5034,7 +5034,7 @@ const m = {
                 //             // Matter.Query.ray(map, player.position, simulation.mouseInGame).length === 0 &&
                 //             // Matter.Query.ray(map, player.position, justPastMouse).length === 0
                 //         ) {
-                //             m.energy -= drain
+                //             m.energy += drain
                 //             m.hole.isReady = false;
                 //             m.fieldRange = 0
                 //             Matter.Body.setPosition(player, simulation.mouseInGame);
@@ -5112,7 +5112,7 @@ const m = {
         //         if (input.field && m.fieldCDcycle < m.cycle) { //not hold but field button is pressed
         //             const DRAIN = 0.01
         //             if (this.rewindCount < 289 && m.energy > DRAIN) {
-        //                 m.energy -= DRAIN
+        //                 m.energy += DRAIN
 
 
         //                 if (this.rewindCount === 0) {
@@ -5227,7 +5227,7 @@ const m = {
                                 Vector.magnitude(Vector.sub(m.pos, mob[i].position)) < range &&
                                 Matter.Query.ray(map, m.pos, mob[i].position).length === 0
                             ) {
-                                m.energy -= 0.1
+                                m.energy += 0.1
                                 if (m.fieldCDcycle < m.cycle + 30) m.fieldCDcycle = m.cycle + 30
                                 const angle = Math.atan2(mob[i].position.y - player.position.y, mob[i].position.x - player.position.x);
                                 b.harpoon(m.pos, mob[i], angle, 0.75, true, 20) // harpoon(where, target, angle = m.angle, harpoonSize = 1, isReturn = false, totalCycles = 35, isReturnAmmo = true, thrust = 0.1) {
@@ -5550,7 +5550,7 @@ const m = {
                                     });
 
                                     if (tech.isAnnihilation && !mob[k].shield && !mob[k].isShielded && !mob[k].isBoss && mob[k].isDropPowerUp && m.energy > 0.34 * m.maxEnergy) {
-                                        m.energy -= 0.33 * Math.max(m.maxEnergy, m.energy)
+                                        m.energy += 0.33 * Math.max(m.maxEnergy, m.energy)
                                         m.immuneCycle = 0; //player doesn't go immune to collision damage
                                         mob[k].death();
                                         simulation.drawList.push({ //add dmg to draw queue
