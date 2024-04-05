@@ -3225,7 +3225,7 @@ const tech = {
         },
         requires: "max health above 100",
         effect() {
-            tech.isAcidDmg = true;
+            tech.isAcidDmg = false;
         },
         remove() {
             tech.isAcidDmg = false;
