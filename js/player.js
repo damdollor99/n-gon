@@ -4118,7 +4118,7 @@ const m = {
                         m.wakeCheck();
                     } else if (input.field && m.fieldCDcycle < m.cycle) { //not hold but field button is pressed
                         const drain = 0.0014 / (1 + 0.05 * m.coupling)
-                        if (m.energy > drain) m.energy -= drain
+                        if (m.energy > drain) m.energy += drain
                         m.grabPowerUp();
                         if (this.rewindCount === 0) {
                             m.lookForPickUp();
