@@ -84,12 +84,12 @@ const b = {
         b.guns[b.activeGun].fire();
         if (tech.crouchAmmoCount && m.crouch) {
             if (tech.crouchAmmoCount % 2) {
-                b.guns[b.activeGun].ammo--;
+                b.guns[b.activeGun].ammo++;
                 simulation.updateGunHUD();
             }
             tech.crouchAmmoCount++ //makes the no ammo toggle off and on
         } else {
-            b.guns[b.activeGun].ammo--;
+            b.guns[b.activeGun].ammo++;
             simulation.updateGunHUD();
         }
     },
@@ -100,13 +100,13 @@ const b = {
             const amount = 0.02
             if (tech.isEnergyHealth) {
                 if (m.maxEnergy > amount * 2) {
-                    tech.healMaxEnergyBonus -= amount * 2
+                    tech.healMaxEnergyBonus += amount * 2
                     m.setMaxEnergy();
                     for (let i = 0; i < 4; i++) powerUps.spawn(m.pos.x + 50 * (Math.random() - 0.5), m.pos.y + 50 * (Math.random() - 0.5), "ammo");
                 }
             } else {
                 if (m.health > amount) {
-                    tech.extraMaxHealth -= amount //decrease max health
+                    tech.extraMaxHealth += amount //decrease max health
                     m.setMaxHealth();
                     for (let i = 0; i < 4; i++) powerUps.spawn(m.pos.x + 50 * (Math.random() - 0.5), m.pos.y + 50 * (Math.random() - 0.5), "ammo");
                 }
