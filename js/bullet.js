@@ -1034,7 +1034,7 @@ const b = {
                     if (Vector.magnitude(Vector.sub(player.position, this.position)) < this.damageRadius) {
                         const DRAIN = (tech.isRadioactiveResistance ? 0.0025 * 0.25 : 0.0025)
                         if (m.energy > DRAIN) {
-                            if (m.immuneCycle < m.cycle) m.energy -= DRAIN
+                            if (m.immuneCycle < m.cycle) m.energy += DRAIN
                         } else {
                             m.energy = 0;
                             if (simulation.dmgScale) m.damage((tech.isRadioactiveResistance ? 0.00016 * 0.25 : 0.00016) * tech.radioactiveDamage) //0.00015
@@ -1542,7 +1542,7 @@ const b = {
                             this.pickUpTarget = null
                         }
                     } else {
-                        if (m.energy > this.drain) m.energy -= this.drain
+                        if (m.energy > this.drain) m.energy += this.drain
                         const sub = Vector.sub(this.position, m.pos)
                         const rangeScale = 1 + 0.000001 * Vector.magnitude(sub) * Vector.magnitude(sub) //return faster when far from player
                         const returnForce = Vector.mult(Vector.normalise(sub), rangeScale * this.thrustMag * this.mass)
@@ -1751,14 +1751,14 @@ const b = {
                                     player.force.x += pull.x
                                     player.force.y += pull.y
                                     if (dist > 500) {
-                                        m.energy -= this.drain
+                                        m.energy += this.drain
                                         // if (m.energy < 0) this.endCycle = 0;
                                     }
 
                                     // if (tech.isImmuneGrapple && m.immuneCycle < m.cycle + 10) {
                                     //     m.immuneCycle = m.cycle + 10;
                                     //     if (m.energy > 0.001) {
-                                    //         m.energy -= 0.001
+                                    //         m.energy += 0.001
                                     //     } else { //out of energy
                                     //         Matter.Sleeping.set(this, false)
                                     //         this.collisionFilter.category = 0
@@ -2197,7 +2197,7 @@ const b = {
     extruder() {
         const DRAIN = 0.0012
         if (m.energy > DRAIN && b.canExtruderFire) {
-            m.energy -= DRAIN
+            m.energy += DRAIN
             if (m.energy < 0) {
                 m.fieldCDcycle = m.cycle + 120;
                 m.energy = 0;
@@ -2279,7 +2279,7 @@ const b = {
     plasma() {
         const DRAIN = 0.00075
         if (m.energy > DRAIN) {
-            m.energy -= DRAIN;
+            m.energy += DRAIN;
             if (m.energy < 0) {
                 m.fieldCDcycle = m.cycle + 120;
                 m.energy = 0;
@@ -2580,7 +2580,7 @@ const b = {
             laserSpin() {
                 //drain energy
                 if (m.energy > this.drain) {
-                    m.energy -= this.drain
+                    m.energy += this.drain
                     if (this.angularSpeed < 0.05) this.torque += this.inertia * this.torqueMagnitude //spin
 
                     //fire lasers
@@ -3329,7 +3329,7 @@ const b = {
                             return distA < distB ? a : b
                         })
                         if (found && m.energy > 0.05) {
-                            m.energy -= 0.05
+                            m.energy += 0.05
                             //remove the body and spawn a new drone
                             Composite.remove(engine.world, found)
                             body.splice(body.indexOf(found), 1)
@@ -3571,7 +3571,7 @@ const b = {
                             return distA < distB ? a : b
                         })
                         if (found && m.energy > 0.05) {
-                            m.energy -= 0.1
+                            m.energy += 0.1
                             //remove the body and spawn a new drone
                             Composite.remove(engine.world, found)
                             body.splice(body.indexOf(found), 1)
@@ -3614,7 +3614,7 @@ const b = {
                 if (Vector.magnitude(Vector.sub(player.position, this.position)) < this.radioRadius) {
                     const DRAIN = tech.isRadioactiveResistance ? 0.001 : 0.004
                     if (m.energy > DRAIN) {
-                        if (m.immuneCycle < m.cycle) m.energy -= DRAIN
+                        if (m.immuneCycle < m.cycle) m.energy += DRAIN
                     } else {
                         m.energy = 0;
                         if (simulation.dmgScale) m.damage((tech.isRadioactiveResistance ? 0.00005 : 0.0002) * tech.radioactiveDamage) //0.00015
@@ -3792,7 +3792,7 @@ const b = {
                 this.force.y += this.mass * 0.001;
                 if (Matter.Query.collides(this, [player]).length) {
                     this.endCycle = 0
-                    m.energy -= m.energy * 0.2
+                    m.energy += m.energy * 0.2
                     simulation.drawList.push({ //add dmg to draw queue
                         x: this.position.x,
                         y: this.position.y,
@@ -5371,7 +5371,7 @@ const b = {
                 }
                 //hit target with laser
                 if (this.lockedOn && this.lockedOn.alive && m.energy > this.drainThreshold) {
-                    m.energy -= this.drain
+                    m.energy += this.drain
                     this.laser();
                     // b.laser(this.vertices[0], this.lockedOn.position, m.dmgScale * this.laserDamage * tech.laserDamage, tech.laserReflections, false, 0.4) //tech.laserDamage = 0.16
                 }
