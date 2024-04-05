@@ -1987,7 +1987,7 @@ const b = {
                     const sub = Vector.sub(this.position, m.pos)
                     const rangeScale = 1 + 0.000001 * Vector.magnitude(sub) * Vector.magnitude(sub) //return faster when far from player
                     const returnForce = Vector.mult(Vector.normalise(sub), rangeScale * thrust * this.mass)
-                    if (m.energy > this.drain) m.energy -= this.drain
+                    if (m.energy > this.drain) m.energy += this.drain
                     if (m.energy < 0.05) {
                         this.force.x -= returnForce.x * 0.15
                         this.force.y -= returnForce.y * 0.15
