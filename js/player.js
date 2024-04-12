@@ -632,7 +632,7 @@ const m = {
                 });
             }
         }
-        m.energy = Math.max(m.energy + steps / 330, 0.01)
+        m.energy = Math.max(m.energy - steps / 330, 0.01)
         if (m.immuneCycle < m.cycle + m.collisionImmuneCycles) m.immuneCycle = m.cycle + m.collisionImmuneCycles; //player is immune to damage for 30 cycles
 
         let isDrawPlayer = true
