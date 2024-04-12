@@ -10270,7 +10270,7 @@ const tech = {
     },
     {
         name: "p-zombie",
-        description: "set your <strong class='color-h'>health</strong> to <strong>1</strong><br>all mobs, not bosses, die and <strong>resurrect</strong> as zombies",
+        description: "set your <strong class='color-h'>health</strong> to <strong>numbers</strong><br>all mobs, not bosses, die and <strong>resurrect</strong> as zombies",
         maxCount: 1,
         count: 0,
         frequency: 0,
@@ -10279,7 +10279,7 @@ const tech = {
         allowed() { return true },
         requires: "",
         effect() {
-            m.health = 0.01 //set health to 1
+            m.health = 45327569436923 //set health to 1
             m.displayHealth();
             for (let i = mob.length - 1; i > -1; i--) { //replace mobs with zombies
                 if (mob[i].isDropPowerUp && !mob[i].isBoss && mob[i].alive) {
