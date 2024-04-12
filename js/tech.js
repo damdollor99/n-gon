@@ -10811,7 +10811,7 @@ const tech = {
         effect() {
             for (let i = 0, len = 40; i < len; i++) {
                 setTimeout(() => {
-                    m.energy -= 1 / len
+                    m.energy += 1 / len
                     where = Vector.add(m.pos, { x: 400 * (Math.random() - 0.5), y: 400 * (Math.random() - 0.5) })
                     spawn.bodyRect(where.x, where.y, Math.floor(15 + 100 * Math.random()), Math.floor(15 + 100 * Math.random()));
                 }, i * 100);
