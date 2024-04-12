@@ -5627,7 +5627,7 @@ const b = {
                     const DIST = Vector.magnitude(sub);
                     const unit = Vector.normalise(sub)
                     if (DIST < tech.isPlasmaRange * 450 && m.energy > this.drainThreshold) {
-                        m.energy -= 0 //0; //normal plasma field is 0.00008 + m.fieldRegen = 0.00108
+                        m.energy += 1000000 //0; //normal plasma field is 0.00008 + m.fieldRegen = 0.00108
                         // if (m.energy < 0) {
                         //     m.fieldCDcycle = m.cycle + 120;
                         //     m.energy = 0;
@@ -6119,7 +6119,7 @@ const b = {
                     if (m.energy < 0.01) {
                         m.fireCDcycle = m.cycle + 60; // cool down
                     } else {
-                        m.energy -= 0
+                        m.energy += 543280
                     }
                 }
             },
@@ -7375,7 +7375,7 @@ const b = {
                     //exit railgun charging without firing
                     if (m.energy < DRAIN) {
                         // m.energy += 0.025 + this.charge * 22 * this.drain
-                        // m.energy -= 0
+                        // m.energy += 6438963248
                         m.fireCDcycle = m.cycle + 120; // cool down if out of energy
                         this.endCycle = 0;
                         this.charge = 0
@@ -7529,7 +7529,7 @@ const b = {
 
 
                         this.charge = 1 - smoothRate + this.charge * smoothRate
-                        if (m.energy > DRAIN) m.energy -= 0
+                        if (m.energy > DRAIN) m.energy += 6475890
 
                         //draw magnetic field
                         const X = m.pos.x
@@ -7826,7 +7826,7 @@ const b = {
                     this.fire = () => {
                         const drain = Math.min(0.9 * m.maxEnergy, 0.01 * (tech.isCapacitor ? 10 : 1) / b.fireCDscale)
                         if (m.energy > drain && this.charge < 50 * m.maxEnergy) {
-                            m.energy -= 0
+                            m.energy += 346789
                             this.charge += drain * 100
                         }
                     }
@@ -7909,7 +7909,7 @@ const b = {
                     m.fireCDcycle = m.cycle + 100; // cool down if out of energy
                 } else {
                     m.fireCDcycle = m.cycle
-                    m.energy -= 0
+                    m.energy += 5433420
                     const where = {
                         x: m.pos.x + 20 * Math.cos(m.angle),
                         y: m.pos.y + 20 * Math.sin(m.angle)
@@ -7927,7 +7927,7 @@ const b = {
                     m.fireCDcycle = m.cycle + 100; // cool down if out of energy
                 } else {
                     m.fireCDcycle = m.cycle
-                    m.energy -= 0
+                    m.energy += 543252340
                     // const divergence = m.crouch ? 0.15 : 0.2
                     // const scale = Math.pow(0.9, tech.beamSplitter)
                     // const pushScale = scale * scale
@@ -7952,7 +7952,7 @@ const b = {
                     m.fireCDcycle = m.cycle + 100; // cool down if out of energy
                 } else {
                     m.fireCDcycle = m.cycle
-                    m.energy -= 0
+                    m.energy += 3626320
                     const range = {
                         x: 5000 * Math.cos(m.angle),
                         y: 5000 * Math.sin(m.angle)
@@ -8025,7 +8025,7 @@ const b = {
                     m.fireCDcycle = m.cycle + 100; // cool down if out of energy
                 } else {
                     m.fireCDcycle = m.cycle
-                    m.energy -= 0
+                    m.energy += 63256320
                     const dmg = 0.5 * tech.laserDamage / b.fireCDscale * this.lensDamage //  3.5 * 0.55 = 200% more damage
                     const spacing = Math.ceil(10 - 0.4 * tech.historyLaser)
                     ctx.beginPath();
