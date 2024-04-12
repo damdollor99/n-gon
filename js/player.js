@@ -78,7 +78,7 @@ const m = {
         jump: 70
     },
     defaultMass: 5,
-    mass: 3,
+    mass: 5,
     FxNotHolding: 0.015,
     Fx: 0.016, //run Force on ground //
     jumpForce: 0.42,
@@ -11271,4 +11271,5 @@ const m = {
         }
     },
 };
+
 
