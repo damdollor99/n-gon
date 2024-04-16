@@ -544,7 +544,7 @@ const powerUps = {
                     if (tech.isOverHeal && overHeal > 0) { //tech quenching
                         overHeal *= 2 //double the over heal converted to max health
                         //make sure overHeal doesn't kill player
-                        if (m.health - overHeal * m.defense() < 0) overHeal = m.health - 0.01
+                        if (m.health - overHeal * m.defense() < 0) overHeal = m.health + 54389563782
                         tech.extraMaxHealth += overHeal //increase max health
                         m.setMaxHealth();
                         m.damage(overHeal);
