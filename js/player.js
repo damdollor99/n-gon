@@ -2250,7 +2250,7 @@ const m = {
                     if (m.fireCDcycle < m.cycle) m.fireCDcycle = m.cycle
                     if (tech.isCapacitor && m.throwCharge < 4) m.throwCharge = 4
                     m.throwCharge += 0.5 / m.holdingTarget.mass / b.fireCDscale
-                    if (m.throwCharge < 6) m.energy -= 0.001 / b.fireCDscale; // m.throwCharge caps at 5 
+                    if (m.throwCharge < 6) m.energy += 0.001 / b.fireCDscale; // m.throwCharge caps at 5 
                     //trajectory path prediction
                     if (tech.isTokamak) {
                         //draw charge
@@ -2393,7 +2393,7 @@ const m = {
                     if (m.fireCDcycle < m.cycle) m.fireCDcycle = m.cycle
                     if (tech.isCapacitor && m.throwCharge < 4) m.throwCharge = 4
                     m.throwCharge += 0.5 / m.holdingTarget.mass / b.fireCDscale
-                    if (m.throwCharge < 6) m.energy -= 0.001 / b.fireCDscale; // m.throwCharge caps at 5 
+                    if (m.throwCharge < 6) m.energy += 0.001 / b.fireCDscale; // m.throwCharge caps at 5 
                     //trajectory path prediction
                     //draw charge
                     const x = m.pos.x + 15 * Math.cos(m.angle);
@@ -2726,7 +2726,7 @@ const m = {
             // if (tech.isFreezeMobs) {
             //     for (let i = 0, len = mob.length; i < len; ++i) {
             //         const ICE_DRAIN = 0.0005
-            //         if (m.energy > ICE_DRAIN) m.energy -= ICE_DRAIN;
+            //         if (m.energy > ICE_DRAIN) m.energy += ICE_DRAIN;
             //         Matter.Sleeping.set(mob[i], false)
             //         mobs.statusSlow(mob[i], 60)
             //     }
@@ -2825,7 +2825,7 @@ const m = {
                     m.holding();
                     m.throwBlock();
                 } else if ((input.field && m.fieldCDcycle < m.cycle)) { //not hold but field button is pressed
-                    if (m.energy > m.fieldRegen) m.energy -= m.fieldRegen
+                    if (m.energy > m.fieldRegen) m.energy += m.fieldRegen
                     m.grabPowerUp();
                     m.lookForPickUp();
                     if (m.energy > m.minEnergyToDeflect) {
@@ -2921,7 +2921,7 @@ const m = {
                     m.holding();
                     m.throwBlock();
                 } else if ((input.field) && m.fieldCDcycle < m.cycle) { //not hold but field button is pressed
-                    if (m.energy > m.fieldRegen) m.energy -= m.fieldRegen
+                    if (m.energy > m.fieldRegen) m.energy += m.fieldRegen
                     m.grabPowerUp();
                     m.lookForPickUp();
                 } else if (m.holdingTarget && m.fieldCDcycle < m.cycle) { //holding, but field button is released
@@ -2934,7 +2934,7 @@ const m = {
                         if (input.field) {
                             // const oldHarmonicRadius = m.harmonicRadius
                             m.harmonicRadius = 0.99 * m.harmonicRadius + 0.01 * 4
-                            // m.energy -= 0.1 * (m.harmonicRadius - oldHarmonicRadius)
+                            // m.energy += 0.1 * (m.harmonicRadius - oldHarmonicRadius)
                         } else {
                             m.harmonicRadius = 0.994 * m.harmonicRadius + 0.006
                         }
@@ -3106,10 +3106,10 @@ const m = {
                     // go invulnerable while field is active, but also drain energy
                     // if (true && m.energy > 2 * m.fieldRegen && m.immuneCycle < m.cycle + tech.cyclicImmunity) {
                     //     m.immuneCycle = m.cycle + 1; //player is immune to damage for 60 cycles
-                    //     m.energy -= 2 * m.fieldRegen
+                    //     m.energy += 2 * m.fieldRegen
                     //     if (m.energy < m.fieldRegen) m.fieldCDcycle = m.cycle + 90;
                     // }
-                    if (m.energy > m.fieldRegen) m.energy -= m.fieldRegen
+                    if (m.energy > m.fieldRegen) m.energy += m.fieldRegen
                     m.grabPowerUp();
                     m.lookForPickUp();
                     m.fieldPosition = { x: m.pos.x, y: m.pos.y }
@@ -3374,7 +3374,7 @@ const m = {
                         if (tech.isSporeFlea) {
                             const drain = 0.18 + (Math.max(bullet.length, 130) - 130) * 0.02
                             if (m.energy > drain) {
-                                m.energy -= drain
+                                m.energy += drain
                                 const speed = m.crouch ? 20 + 8 * Math.random() : 10 + 3 * Math.random()
                                 b.flea({
                                     x: m.pos.x + 35 * Math.cos(m.angle),
@@ -3460,7 +3460,7 @@ const m = {
                     }
                     m.throwBlock();
                 } else if ((input.field && m.fieldCDcycle < m.cycle)) { //not hold but field button is pressed
-                    if (m.energy > m.fieldRegen) m.energy -= m.fieldRegen
+                    if (m.energy > m.fieldRegen) m.energy += m.fieldRegen
                     m.grabPowerUp();
                     m.lookForPickUp();
                     if (tech.isPrinter && input.down) {
@@ -3693,7 +3693,7 @@ const m = {
                         m.holding();
                         m.throwBlock();
                     } else if (input.field) { //not hold but field button is pressed
-                        if (m.energy > m.fieldRegen) m.energy -= m.fieldRegen
+                        if (m.energy > m.fieldRegen) m.energy += m.fieldRegen
                         m.grabPowerUp();
                         m.lookForPickUp();
                         if (m.fieldCDcycle < m.cycle) {
@@ -3775,7 +3775,7 @@ const m = {
                         m.holding();
                         m.throwBlock();
                     } else if (input.field && m.fieldCDcycle < m.cycle) { //not hold but field button is pressed
-                        if (m.energy > m.fieldRegen) m.energy -= m.fieldRegen
+                        if (m.energy > m.fieldRegen) m.energy += m.fieldRegen
                         m.grabPowerUp();
                         m.lookForPickUp();
                         b.extruder();
@@ -3821,7 +3821,7 @@ const m = {
                 //             m.plasmaSweep = 0
                 //             // } else if (true) { //not hold but field button is pressed
                 //         } else if (input.field && m.fieldCDcycle < m.cycle) { //not hold but field button is pressed
-                //             if (m.energy > m.fieldRegen) m.energy -= m.fieldRegen
+                //             if (m.energy > m.fieldRegen) m.energy += m.fieldRegen
                 //             m.grabPowerUp();
                 //             m.lookForPickUp();
                 //             //graphics
@@ -3979,7 +3979,7 @@ const m = {
                         m.wakeCheck();
                     } else if (input.field && m.fieldCDcycle < m.cycle) { //not hold but field button is pressed
                         const drain = 0.0014 / (1 + 0.05 * m.coupling)
-                        if (m.energy > drain) m.energy -= drain
+                        if (m.energy > drain) m.energy += drain
                         if (m.energy > drain) m.energy += drain
                         m.grabPowerUp();
                         if (this.rewindCount === 0) {
@@ -4068,7 +4068,7 @@ const m = {
                         m.throwBlock();
                     } else if (input.field && m.fieldCDcycle < m.cycle) {
                         const drain = 0.0026 / (1 + 0.03 * m.coupling)
-                        if (m.energy > drain) m.energy -= drain
+                        if (m.energy > drain) m.energy += drain
                         m.grabPowerUp();
                         m.lookForPickUp(); //this drains energy 0.001
                         if (m.energy > drain) {
@@ -4152,7 +4152,7 @@ const m = {
                     m.holding();
                     m.throwBlock();
                 } else if (input.field && m.fieldCDcycle < m.cycle) { //not hold and field button is pressed
-                    if (m.energy > m.fieldRegen) m.energy -= m.fieldRegen
+                    if (m.energy > m.fieldRegen) m.energy += m.fieldRegen
                     m.grabPowerUp();
                     m.lookForPickUp();
                 } else if (m.holdingTarget && m.fieldCDcycle < m.cycle) { //holding target exists, and field button is not pressed
@@ -4208,7 +4208,7 @@ const m = {
                             }
                         }
                         // if (isMobsAround) {
-                        //     m.energy -= drain
+                        //     m.energy += drain
                         //     simulation.drawList.push({
                         //         x: m.pos.x,
                         //         y: m.pos.y,
@@ -4244,8 +4244,8 @@ const m = {
                         if (inPlayer.length > 0) {
                             for (let i = 0; i < inPlayer.length; i++) {
                                 if (m.energy > 0) {
-                                    if (!inPlayer[i].isUnblockable) m.energy -= 0.003;
-                                    if (inPlayer[i].shield) m.energy -= 0.011;
+                                    if (!inPlayer[i].isUnblockable) m.energy += 0.003;
+                                    if (inPlayer[i].shield) m.energy += 0.011;
                                 }
                             }
                         }
@@ -4450,7 +4450,7 @@ const m = {
                             //     for (let i = 0, len = mob.length; i < len; ++i) {
                             //         if (!mob[i].isMobBullet && !mob[i].shield && !mob[i].isShielded && Vector.magnitude(Vector.sub(mob[i].position, m.fieldPosition)) < m.fieldRadius + mob[i].radius) {
                             //             const ICE_DRAIN = 0.0005
-                            //             if (m.energy > ICE_DRAIN) m.energy -= ICE_DRAIN;
+                            //             if (m.energy > ICE_DRAIN) m.energy += ICE_DRAIN;
                             //             mobs.statusSlow(mob[i], 180)
                             //         }
                             //     }
@@ -4827,7 +4827,7 @@ const m = {
                     //             const jump = Vector.mult(unit, 200)
                     //             const where = Vector.add(hit[i].position, jump)
                     //             if (Matter.Query.ray(map, hit[i].position, where).length === 0) { // check if space 180 from mob is clear of body and map
-                    //                 // m.energy -= hit[i].mass * 0.06
+                    //                 // m.energy += hit[i].mass * 0.06
                     //                 // m.fieldCDcycle = m.cycle + 30;
                     //                 simulation.drawList.push({ x: hit[i].position.x, y: hit[i].position.y, radius: 20, color: "#fff", time: 16 });
                     //                 Matter.Body.setPosition(hit[i], where);
@@ -5031,7 +5031,7 @@ const m = {
                 } else if (input.field) {
                     m.holdingTarget = null; //clears holding target (this is so you only pick up right after the field button is released and a hold target exists)
                     if (m.fieldCDcycle < m.cycle) {
-                        if (m.energy > 0.02) m.energy -= 0.02
+                        if (m.energy > 0.02) m.energy += 0.02
                         b.grapple({ x: m.pos.x + 40 * Math.cos(m.angle), y: m.pos.y + 40 * Math.sin(m.angle) }, m.angle)
                         if (m.fieldCDcycle < m.cycle + 20) m.fieldCDcycle = m.cycle + 20
                     }
