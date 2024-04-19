@@ -1149,7 +1149,7 @@ const input = {
     isPauseKeyReady: true,
     key: {
         fire: "KeyF",
-        field: "M",
+        field: "SPACE",
         up: "KeyW", // jump
         down: "KeyS", // crouch
         left: "KeyA",
@@ -1162,7 +1162,7 @@ const input = {
     setDefault() {
         input.key = {
             fire: "KeyF",
-            field: "M",
+            field: "SPACE",
             up: "KeyW", // jump
             down: "KeyS", // crouch
             left: "KeyA",
