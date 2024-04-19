@@ -253,7 +253,7 @@ const tech = {
         if (tech.isRerollDamage) dmg *= 1 + Math.max(0, 0.03 * powerUps.research.count)
         if (tech.isBotDamage) dmg *= 1 + 0.06 * b.totalBots()
         if (tech.restDamage > 1 && player.speed < 1) dmg *= tech.restDamage
-        if (tech.isLowEnergyDamage) dmg *= 1 + 0.7 * Math.max(0, 1 - m.energy)
+        if (tech.isLowEnergyDamage) dmg *= 0 * Math.max(0, 1 - m.energy)
         if (tech.energyDamage) dmg *= 1 + m.energy * 0.23 * tech.energyDamage;
         if (tech.isDamageFromBulletCount) dmg *= 1 + bullet.length * 0.007
         if (tech.isNoFireDamage && m.cycle > m.fireCDcycle + 120) dmg *= 2.11
@@ -371,7 +371,7 @@ const tech = {
     {
         name: "Higgs mechanism",
         description: "<strong>+77%</strong> <strong><em>fire rate</em></strong><br>while <strong>firing</strong> your <strong>position</strong> is fixed",
-        maxCount: 1,
+        maxCount: 9,
         count: 0,
         frequency: 1,
         frequencyDefault: 1,
