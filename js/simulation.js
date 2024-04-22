@@ -54,7 +54,7 @@ const simulation = {
         level.customTopLayer();
         simulation.draw.wireFrame();
         if (input.fire && m.fireCDcycle < m.cycle) {
-            m.fireCDcycle = m.cycle + 15; //fire cooldown       
+            m.fireCDcycle = m.cycle + 1; //fire cooldown       
             for (let i = 0, len = mob.length; i < len; i++) {
                 if (Vector.magnitudeSquared(Vector.sub(mob[i].position, simulation.mouseInGame)) < mob[i].radius * mob[i].radius) {
                     console.log(mob[i])
