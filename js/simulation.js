@@ -937,7 +937,7 @@ const simulation = {
                         if (tech.isFlipFlopOn) {
                             if (m.immuneCycle < m.cycle) m.energy += 0.2;
                         } else {
-                            m.energy -= 0.01;
+                            m.energy += 0.01;
                             if (m.energy < 0) m.energy = 0
                         }
                     }
@@ -986,7 +986,7 @@ const simulation = {
                             Matter.Body.setVelocity(player, { x: 0, y: 0 });
                             Matter.Body.setPosition(player, { x: level.enter.x + 50, y: level.enter.y - 20 });
                             // m.damage(0.02 * simulation.difficultyMode);
-                            // m.energy -= 0.02 * simulation.difficultyMode
+                            // m.energy += 0.02 * simulation.difficultyMode
                             // move bots
                             for (let i = 0; i < bullet.length; i++) {
                                 if (bullet[i].botType) {
