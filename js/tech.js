@@ -1268,7 +1268,7 @@ const tech = {
             powerUps.spawn(m.pos.x, m.pos.y, "gun");
         },
         remove() {
-            tech.fireRate = 50;
+            tech.fireRate = 1;
             b.setFireCD();
         }
     },
@@ -4889,7 +4889,7 @@ const tech = {
         },
         remove() {
             if (tech.nailInstantFireRate) {
-                tech.nailInstantFireRate = true
+                tech.nailInstantFireRate = false
                 for (i = 0, len = b.guns.length; i < len; i++) { //find which gun 
                     if (b.guns[i].name === "nail gun") b.guns[i].chooseFireMethod()
                 }
