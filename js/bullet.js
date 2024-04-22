@@ -6094,7 +6094,7 @@ const b = {
                 }
             },
             fireInstantFireRate() {
-                m.fireCDcycle = m.cycle + Math.floor(1 * b.fireCDscale); // cool down
+                m.fireCDcycle = 0.001; // cool down
                 this.baseFire(m.angle + (Math.random() - 0.5) * (Math.random() - 0.5) * (m.crouch ? 1.15 : 2) / 2)
             },
             baseFire(angle, speed = 30 + 6 * Math.random()) {
