@@ -412,8 +412,8 @@ const m = {
             //     if (tech.tech[i].name === "quantum immortality") tech.removeTech(i)
             // }
             m.setMaxHealth()
-            m.health = 1;
-            // m.addHealth(1)
+            m.health = 100;
+            // m.addHealth(100)
             simulation.wipe = function () { //set wipe to have trails
                 ctx.fillStyle = "rgba(255,255,255,0)";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -494,7 +494,7 @@ const m = {
         }
     },
     health: 0,
-    maxHealth: 1, //set in simulation.reset()
+    maxHealth: 100, //set in simulation.reset()
     drawHealth() {
         if (m.health < 1) {
             ctx.fillStyle = "rgba(100, 100, 100, 0.5)";
