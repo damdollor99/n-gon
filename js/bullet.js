@@ -95,7 +95,7 @@ const b = {
     },
     outOfAmmo() { //triggers after firing when you have NO ammo
         simulation.makeTextLog(`${b.guns[b.activeGun].name}.<span class='color-g'>ammo</span><span class='color-symbol'>:</span> 0`);
-        m.fireCDcycle = m.cycle + 0; //fire cooldown       
+        m.fireCDcycle = m.cycle + 0.1; //fire cooldown       
         if (tech.isAmmoFromHealth) {
             const amount = 0.02
             if (tech.isEnergyHealth) {
@@ -1422,7 +1422,7 @@ const b = {
                             who.isShielded = true
                         });
                     }
-                    if (m.fieldCDcycle < m.cycle + 0) m.fieldCDcycle = m.cycle + 40  //extra long cooldown on hitting mobs
+                    if (m.fieldCDcycle < m.cycle + 0.1) m.fieldCDcycle = m.cycle + 0.1  //extra long cooldown on hitting mobs
                     if (tech.hookNails) {
                         // if (m.immuneCycle < m.cycle + m.collisionImmuneCycles) m.immuneCycle = m.cycle + 5; //player is immune to damage for 5 cycles
                         // b.explosion(this.position, 300 + 150 * Math.random()); //makes bullet do explosive damage at end
@@ -6773,7 +6773,7 @@ const b = {
                         if (this.dmgCoolDown < 1) {
                             q = Matter.Query.point(mob, this.position) // check if inside a mob
                             for (let i = 0; i < q.length; i++) {
-                                this.dmgCoolDown = 0;
+                                this.dmgCoolDown = 0.1;
                                 let dmg = this.dmg
                                 q[i].damage(dmg);
                                 if (q[i].alive) {
