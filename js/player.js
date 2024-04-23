@@ -2008,26 +2008,26 @@ const m = {
     fireCDcycle: 0,
     fieldCDcycle: 0,
     fieldMode: 0, //basic field mode before upgrades
-    maxEnergy: 1, //can be increased by a tech
+    maxEnergy: 100, //can be increased by a tech
     holdingTarget: null,
     timeSkipLastCycle: 0,
     coupling: 0,
     // these values are set on reset by setHoldDefaults()
     fieldFx: 1,
     fieldJump: 1,
-    blockingRecoil: 4,
+    blockingRecoil: 1,
     grabPowerUpRange2: 0,
     isFieldActive: false,
-    fieldRange: 155,
+    fieldRange: 200,
     fieldShieldingScale: 1,
-    // fieldDamage: 1,
+    // fieldDamage: 100000000,
     isSneakAttack: false,
     lastHit: 0, //stores value of last damage player took above a threshold, in m.damage
     sneakAttackCycle: 0,
     enterCloakCycle: 0,
     duplicateChance: 0,
     energy: 0,
-    fieldRegen: 0.001,
+    fieldRegen: 100,
     fieldMode: 0,
     fieldFire: false,
     fieldHarmReduction: 1,
@@ -2057,13 +2057,13 @@ const m = {
         m.eyeFillColor = m.fieldMeterColor
         m.fieldShieldingScale = 1;
         m.fieldBlockCD = 10;
-        m.fieldHarmReduction = 1;
+        m.fieldHarmReduction = 100;
         m.lastHit = 0
         m.isSneakAttack = false
         m.duplicateChance = 0
         m.grabPowerUpRange2 = 200000;
-        m.blockingRecoil = 4;
-        m.fieldRange = 155;
+        m.blockingRecoil = 1;
+        m.fieldRange = 200;
         m.fieldFire = false;
         m.fieldCDcycle = 0;
         m.isCloak = false;
@@ -2130,27 +2130,27 @@ const m = {
     },
     setFieldRegen() {
         if (m.fieldMode === 0) {
-            m.fieldRegen = 0.00067  //4 energy per second for field emitter
+            m.fieldRegen = 1  //4 energy per second for field emitter
         } else if (m.fieldMode === 6) {
-            m.fieldRegen = 0.002  //12 energy per second for time dilation
+            m.fieldRegen = 4  //12 energy per second for time dilation
         } else if (m.fieldMode === 2) {
-            m.fieldRegen = 0.000833 //5 energy per second perfect dia
+            m.fieldRegen = 2 //5 energy per second perfect dia
         } else if (m.fieldMode === 4) {
-            m.fieldRegen = 0.002 //12 energy per second molecular assembler
+            m.fieldRegen = 4 //12 energy per second molecular assembler
         } else if (m.fieldMode === 5) {
-            m.fieldRegen = 0.001667 //10 energy per second  plasma torch
+            m.fieldRegen = 3 //10 energy per second  plasma torch
         } else if (m.fieldMode === 8) {
-            m.fieldRegen = 0.001667 //10 energy per second pilot wave
+            m.fieldRegen = 3 //10 energy per second pilot wave
         } else if (m.fieldMode === 10) {
-            m.fieldRegen = 0.0015 //9 energy per second grappling hook
+            m.fieldRegen = 2 //9 energy per second grappling hook
         } else {
             m.fieldRegen = 0.001 //6 energy per second
         }
         if (m.fieldMode === 0 || m.fieldMode === 4) m.fieldRegen += 0.000133 * m.coupling //return `generate <strong>${(6*couple).toFixed(0)}</strong> <strong class='color-f'>energy</strong> per second`
         if (tech.isTimeCrystals) {
-            m.fieldRegen *= 2.5
+            m.fieldRegen *= 3
         } else if (tech.isGroundState) {
-            m.fieldRegen *= 0.66
+            m.fieldRegen *= 1
         }
     },
     regenEnergy() { //used in drawRegenEnergy  // rewritten by some tech
@@ -2562,7 +2562,7 @@ const m = {
     minEnergyToDeflect: 0.05,
     pushMass(who, fieldBlockCost = (0.025 + Math.sqrt(who.mass) * Vector.magnitude(Vector.sub(who.velocity, player.velocity)) * 0.002) * m.fieldShieldingScale) {
         if (m.energy > m.minEnergyToDeflect) { //shield needs at least some of the cost to block
-            if (who.isShielded) fieldBlockCost *= 2; //shielded mobs take more energy to block
+            if (who.isShielded) fieldBlockCost *= 1; //shielded mobs take same energy to block
             m.energy += fieldBlockCost
             if (m.energy < m.minEnergyToDeflect) {
                 m.energy = 0;
@@ -2850,8 +2850,8 @@ const m = {
         drainCD: 0,
         effect: () => {
             m.fieldBlockCD = 0;
-            m.blockingRecoil = 1.5 //4 is normal
-            m.fieldRange = 185
+            m.blockingRecoil = 1 //4 is normal
+            m.fieldRange = 190
             m.fieldShieldingScale = 1.6 * Math.pow(0.5, (tech.harmonics - 2))
             // m.fieldHarmReduction = 0.66; //33% reduction
             m.harmonic3Phase = () => { //normal standard 3 different 2-d circles
@@ -3192,7 +3192,7 @@ const m = {
             m.fieldHarmReduction = 0.45; //55% reduction
             m.fieldDrawRadius = 0;
             m.hold = function () {
-                m.airSpeedLimit = 125 //5 * player.mass * player.mass
+                m.airSpeedLimit = 175 //5 * player.mass * player.mass
                 m.FxAir = 0.016
                 if (m.isHolding) {
                     m.drawHold(m.holdingTarget);
@@ -3503,8 +3503,8 @@ const m = {
                     isAttached: false,
                     isOn: false,
                     drain: 0.0017,
-                    radiusLimit: 10,
-                    damage: 0.8,
+                    radiusLimit: 15,
+                    damage: 3,
                     setPositionToNose() {
                         const nose = { x: m.pos.x + 10 * Math.cos(m.angle), y: m.pos.y + 10 * Math.sin(m.angle) }
                         Matter.Body.setPosition(this, Vector.add(nose, Vector.mult(Vector.normalise(Vector.sub(nose, m.pos)), circleRadiusScale * this.circleRadius)));
