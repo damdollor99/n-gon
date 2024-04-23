@@ -1255,7 +1255,7 @@ const tech = {
         name: "heuristics",
         description: "<strong>+22%</strong> <strong><em>fire rate</em></strong><br>spawn a <strong class='color-g'>gun</strong>",
         maxCount: 9,
-        count: 1,
+        count: 0,
         frequency: 1,
         frequencyDefault: 1,
         allowed() {
@@ -1263,12 +1263,12 @@ const tech = {
         },
         requires: "",
         effect() {
-            tech.fireRate *= 50
+            tech.fireRate *= 0.01
             b.setFireCD();
             powerUps.spawn(m.pos.x, m.pos.y, "gun");
         },
         remove() {
-            tech.fireRate = 100;
+            tech.fireRate = 1;
             b.setFireCD();
         }
     },
