@@ -11,7 +11,7 @@ const level = {
     // playableLevels: ["pavilion", "pavilion", "pavilion", "pavilion", "pavilion", "pavilion", "pavilion", "pavilion", "pavilion", "pavilion", "pavilion"],
     //see level.populateLevels:   (initial, ... , reservoir or factory, reactor, ... , subway, final)    added later
     playableLevels: ["labs", "rooftops", "skyscrapers", "warehouse", "highrise", "office", "aerie", "satellite", "sewers", "testChamber", "pavilion", "lock"],
-    communityLevels: ["gauntlet", "stronghold", "basement", "crossfire", "vats", "run", "ngon", "house", "perplex", "coliseum", "tunnel", "islands", "temple", "dripp", "biohazard", "stereoMadness", "yingYang", "staircase", "fortress", "commandeer", "clock", "buttonbutton", "downpour", "superNgonBros", "underpass", "cantilever", "tlinat", "ruins", "ace", "crimsonTowers", "LaunchSite", "shipwreck", "unchartedCave", "dojo", 'arena'],
+    communityLevels: ["gauntlet", "stronghold", "basement", "crossfire", "vats", "run", "ngon", "house", "perplex", "coliseum", "tunnel", "islands", "temple", "dripp", "biohazard", "yingYang", "staircase", "fortress", "commandeer", "clock", "buttonbutton", "downpour", "superNgonBros", "underpass", "cantilever", "tlinat", "ruins", "ace", "crimsonTowers", "LaunchSite", "shipwreck", "unchartedCave", "dojo", 'arena'],
     trainingLevels: ["walk", "crouch", "jump", "hold", "throw", "throwAt", "deflect", "heal", "fire", "nailGun", "shotGun", "superBall", "matterWave", "missile", "stack", "mine", "grenades", "harpoon"],
     levels: [],
     start() {
