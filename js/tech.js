@@ -3596,7 +3596,7 @@ const tech = {
         // descriptionFunction() {
         //     return `<strong>+40%</strong> <strong class='color-d'>damage</strong>, but <strong>-10%</strong> <strong class='color-d'>damage</strong><br>for each ${powerUps.orb.research(1)} in your inventory <em>(${40 - 10 * powerUps.research.count}% damage)</em>`
         // },
-        maxCount: 1,
+        maxCount: 9,
         count: 0,
         frequency: 1,
         frequencyDefault: 1,
@@ -3606,7 +3606,7 @@ const tech = {
         requires: "no research",
         effect() {
             tech.isRerollHaste = true;
-            tech.researchHaste = 0.4; //+60% fire rate
+            tech.researchHaste = 0.1; //+60% fire rate
             b.setFireCD();
         },
         remove() {
