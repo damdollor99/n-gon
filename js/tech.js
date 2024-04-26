@@ -1,7 +1,7 @@
 const tech = {
     totalCount: null,
     setupAllTech() {
-        tech.damage = 1
+        tech.damage = 100
         for (let i = 0, len = tech.tech.length; i < len; i++) {
             tech.tech[i].isLost = false
             tech.tech[i].isBanished = false
