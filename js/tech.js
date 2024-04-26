@@ -8564,7 +8564,7 @@ const tech = {
         name: "Lorentz transformation",
         description: `use ${powerUps.orb.research(3)}<br><strong>+50%</strong> <strong>movement</strong>, <strong>jumping</strong>, and <strong><em>fire rate</em></strong>`,
         isFieldTech: true,
-        maxCount: 1,
+        maxCount: 9,
         count: 0,
         frequency: 3,
         frequencyDefault: 3,
