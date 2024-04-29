@@ -1,6 +1,5 @@
 // game Object ********************************************************
 //*********************************************************************
-        lore.unlockTesting();
 const simulation = {
     loop() { }, //main game loop, gets set to normal or testing loop
     normalLoop() {
@@ -35,6 +34,8 @@ const simulation = {
         simulation.runEphemera();
         ctx.restore();
         simulation.drawCursor();
+        lore.unlockTesting();
+        console.log(clear)
     },
     testingLoop() {
         simulation.gravity();
