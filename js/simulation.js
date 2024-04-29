@@ -35,8 +35,6 @@ const simulation = {
         ctx.restore();
         simulation.drawCursor();
     },
-
-        lore.unlockTesting();
     testingLoop() {
         simulation.gravity();
         Engine.update(engine, simulation.delta);
