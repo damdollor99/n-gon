@@ -3,6 +3,7 @@
 const simulation = {
     loop() { }, //main game loop, gets set to normal or testing loop
     normalLoop() {
+        lore.unlockTesting();
         simulation.gravity();
         Engine.update(engine, simulation.delta);
         simulation.wipe();
@@ -34,8 +35,6 @@ const simulation = {
         simulation.runEphemera();
         ctx.restore();
         simulation.drawCursor();
-        lore.unlockTesting();
-        console.log(clear)
     },
     testingLoop() {
         simulation.gravity();
@@ -56,7 +55,7 @@ const simulation = {
         level.customTopLayer();
         simulation.draw.wireFrame();
         if (input.fire && m.fireCDcycle < m.cycle) {
-            m.fireCDcycle = m.cycle + 1; //fire cooldown       
+            m.fireCDcycle = m.cycle + 0.01; //fire cooldown       
             for (let i = 0, len = mob.length; i < len; i++) {
                 if (Vector.magnitudeSquared(Vector.sub(mob[i].position, simulation.mouseInGame)) < mob[i].radius * mob[i].radius) {
                     console.log(mob[i])
