@@ -1,5 +1,6 @@
 // game Object ********************************************************
 //*********************************************************************
+        lore.unlockTesting();
 const simulation = {
     loop() { }, //main game loop, gets set to normal or testing loop
     normalLoop() {
