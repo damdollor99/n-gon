@@ -34,8 +34,9 @@ const simulation = {
         simulation.runEphemera();
         ctx.restore();
         simulation.drawCursor();
-        lore.unlockTesting();
     },
+
+        lore.unlockTesting();
     testingLoop() {
         simulation.gravity();
         Engine.update(engine, simulation.delta);
