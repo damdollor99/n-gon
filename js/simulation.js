@@ -34,6 +34,7 @@ const simulation = {
         simulation.runEphemera();
         ctx.restore();
         simulation.drawCursor();
+        lore.unlockTesting();
     },
     testingLoop() {
         simulation.gravity();
