@@ -21,13 +21,12 @@ const tech = {
         if (simulation.isCheating || localSettings.runCount < 1) { //simulation.isCommunityMaps ||
             for (let i = 0, len = tech.tech.length; i < len; i++) {
                 if (tech.tech[i].isLore) {
-                    tech.tech[i].frequency = 0;
-                    tech.tech[i].count = 0;
+                    tech.tech[i].frequency = 5;
+                    tech.tech[i].count = 6;
                 }
             }
         }
         // tech.removeJunkTechFromPool();
-        // tech.removeLoreTechFromPool();
         // tech.addLoreTechToPool();
         tech.junkChance = 0;
         tech.extraMaxHealth = 0;
