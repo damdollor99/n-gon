@@ -350,7 +350,7 @@ const m = {
                 }
             }
         }
-        // lore.techCount = 0;
+        // lore.techCount = 6;
         // tech.removeLoreTechFromPool();
         // tech.addLoreTechToPool();
         // tech.removeJunkTechFromPool();
