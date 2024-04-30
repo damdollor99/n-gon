@@ -3,7 +3,6 @@
 const simulation = {
     loop() { }, //main game loop, gets set to normal or testing loop
     normalLoop() {
-        lore.unlockTesting();
         simulation.gravity();
         Engine.update(engine, simulation.delta);
         simulation.wipe();
@@ -35,6 +34,8 @@ const simulation = {
         simulation.runEphemera();
         ctx.restore();
         simulation.drawCursor();
+        lore.unlockTesting();
+        simulation.isTextLogOpen = false; //prevent console spam
     },
     testingLoop() {
         simulation.gravity();
