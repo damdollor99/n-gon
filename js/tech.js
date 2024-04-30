@@ -17,7 +17,7 @@ const tech = {
         }
         //remove lore if it's your first time playing since it's confusing
         //also remove lore if cheating
-        lore.techCount = 0;
+        lore.techCount = 6;
         if (simulation.isCheating || localSettings.runCount < 1) { //simulation.isCommunityMaps ||
             for (let i = 0, len = tech.tech.length; i < len; i++) {
                 if (tech.tech[i].isLore) {
