@@ -6264,7 +6264,6 @@ const b = {
                                 if (tech.isCritKill) b.crit(who, this)
                             }
                         }
-                        spray(12); //fires normal shotgun bullets
                     } else if (tech.isIncendiary) {
                         spread *= 0.15
                         const END = Math.floor(m.crouch ? 8 : 5);
