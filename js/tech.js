@@ -7948,7 +7948,7 @@ const tech = {
         },
         requires: "negative mass, pilot wave",
         effect() {
-            tech.lastHitDamage += 4;
+            tech.lastHitDamage -= 4;
         },
         remove() {
             tech.lastHitDamage = 0;
